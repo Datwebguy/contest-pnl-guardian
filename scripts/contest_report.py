@@ -5,19 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
-import sys
-from pathlib import Path
 
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-
-
-def run_json(command: list[str]) -> dict:
-    completed = subprocess.run(command, check=False, capture_output=True, text=True)
-    if completed.returncode not in (0, 1, 2):
-        raise RuntimeError(completed.stderr.strip() or completed.stdout.strip())
-    return json.loads(completed.stdout)
+from core import build_report
 
 
 def parse_trade(value: str) -> tuple[str, str, str]:
@@ -25,56 +14,6 @@ def parse_trade(value: str) -> tuple[str, str, str]:
     if len(parts) != 3:
         raise argparse.ArgumentTypeError("Use CHAIN:FROM_TOKEN:TO_TOKEN, e.g. Solana:BONK:WIF")
     return parts[0], parts[1], parts[2]
-
-
-def build_report(volume_usd: float, balance_usd: float, trades: list[tuple[str, str, str]]) -> dict:
-    eligibility = run_json(
-        [
-            sys.executable,
-            str(SCRIPT_DIR / "eligibility_check.py"),
-            "--volume-usd",
-            str(volume_usd),
-            "--balance-usd",
-            str(balance_usd),
-            "--json",
-        ]
-    )
-
-    validated_trades = []
-    for chain, from_token, to_token in trades:
-        result = run_json(
-            [
-                sys.executable,
-                str(SCRIPT_DIR / "trade_validator.py"),
-                "--chain",
-                chain,
-                "--from-token",
-                from_token,
-                "--to-token",
-                to_token,
-                "--json",
-            ]
-        )
-        validated_trades.append(
-            {
-                "chain": chain,
-                "from_token": from_token,
-                "to_token": to_token,
-                **result,
-            }
-        )
-
-    qualifying_count = sum(1 for trade in validated_trades if trade["qualifies"])
-    return {
-        "contest_status": eligibility,
-        "proposed_trades": validated_trades,
-        "summary": {
-            "participation_ready": eligibility["participation_ready"],
-            "leaderboard_ready": eligibility["leaderboard_ready"],
-            "qualifying_trade_ideas": qualifying_count,
-            "needs_onchainos_before_execution": True,
-        },
-    }
 
 
 def print_text(report: dict) -> None:
