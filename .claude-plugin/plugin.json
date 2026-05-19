@@ -1,0 +1,17 @@
+{
+  "name": "contest-pnl-guardian",
+  "version": "1.0.0",
+  "description": "Contest-aware onchain trading guardrails for the OKX Agentic Trading Competition.",
+  "author": "Datwebguy",
+  "license": "MIT",
+  "keywords": [
+    "okx",
+    "onchainos",
+    "agentic-wallet",
+    "trading",
+    "contest",
+    "pnl",
+    "solana",
+    "xlayer"
+  ]
+}
