@@ -1,10 +1,15 @@
+schema_version: 1
 name: contest-pnl-guardian
-version: 1.0.0
-description: Contest-aware onchain trading guardrails for the OKX Agentic Trading Competition.
-author: Datwebguy
+version: "1.0.0"
+description: "Contest-aware onchain trading guardrails for OKX Agentic Trading."
+author:
+  name: "Datwebguy"
+  github: "Datwebguy"
 license: MIT
-repository: https://github.com/Datwebguy/contest-pnl-guardian
-keywords:
+category: trading-strategy
+type: community-developer
+github_link: https://github.com/Datwebguy/contest-pnl-guardian
+tags:
   - okx
   - onchainos
   - agentic-wallet
@@ -13,12 +18,13 @@ keywords:
   - pnl
   - solana
   - xlayer
-skill:
-  entry: SKILL.md
-  summary: SUMMARY.md
 requirements:
   primary_data_source: onchainOS
   primary_trading_tool: onchainOS
   supported_chains:
     - Solana
     - X Layer
+components:
+  skill:
+    dir: "."
+  api_calls: []
