@@ -20,6 +20,25 @@ npx skills add okx/plugin-store --skill contest-pnl-guardian
 
 During development, clone this repository and load the skill directory in an agent that supports local skills.
 
+For an onchainOS test stack, install the relevant OKX skills:
+
+```bash
+npx skills add okx/onchainos-skills
+```
+
+Recommended selections:
+
+- `okx-agentic-wallet`
+- `okx-dex-market`
+- `okx-dex-signal`
+- `okx-dex-swap`
+- `okx-dex-token`
+- `okx-growth-competition`
+- `okx-how-to-play`
+- `okx-onchain-gateway`
+- `okx-security`
+- `okx-wallet-portfolio`
+
 ## Local Test Commands
 
 Generate a demo readiness report:
