@@ -1,9 +1,6 @@
 ---
 name: contest-pnl-guardian
-version: 1.0.0
 description: Contest-aware onchain trading assistant for the OKX Agentic Trading Competition. Use when a user asks to trade for the OKX/Agentic Wallet contest, maximize realized PnL, check leaderboard or participation eligibility, validate whether a token trade counts, manage Solana or X Layer contest volume, or execute rule-aware trades through onchainOS.
-author: Datwebguy
-tags: [okx, onchainos, trading, contest, pnl, solana, xlayer, agentic-wallet]
 license: MIT
 ---
 
