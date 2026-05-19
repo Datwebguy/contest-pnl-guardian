@@ -5,6 +5,7 @@ Contest PnL Guardian is an onchainOS-first skill that helps Agentic Wallet users
 ## What It Does
 
 - Checks participation and leaderboard readiness.
+- Handles registration/join intent through onchainOS competition tooling.
 - Validates whether proposed trades likely count for the contest.
 - Rejects stablecoin, native-token, and wrapped-native-token swaps for contest scoring.
 - Guides agents to use onchainOS for wallet data, token metadata, routes, simulations, and swaps.
@@ -69,6 +70,12 @@ python scripts/eligibility_check.py --volume-usd 250 --balance-usd 120
 
 ```text
 Use Contest PnL Guardian to check whether I am contest-ready with $250 volume, $120 wallet balance, and these proposed trades: Solana BONK to WIF, Solana SOL to USDC.
+```
+
+Registration test prompt:
+
+```text
+Use Contest PnL Guardian in dry-run mode. Show how you would register me for the Agentic Trading Contest without actually joining.
 ```
 
 ## Safety
