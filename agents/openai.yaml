@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contest PnL Guardian"
+  short_description: "Contest-aware onchain trading guardrails for OKX Agentic Wallet."
+  default_prompt: "Help me trade for the OKX Agentic Trading Contest while preserving eligibility and using onchainOS."
