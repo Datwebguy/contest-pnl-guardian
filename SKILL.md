@@ -139,6 +139,7 @@ Never claim profit is guaranteed. Use "may", "could", and "risk" language for fo
 - `scripts/trade_validator.py`: Validate whether a chain/pair likely qualifies for the competition.
 - `scripts/eligibility_check.py`: Calculate leaderboard and participation progress from wallet balance and volume inputs.
 - `scripts/contest_report.py`: Generate a compact readiness report from wallet balance, volume, and proposed trades.
+- `scripts/core.py`: Shared pure validation and reporting logic used by the CLI wrappers.
 
 Use scripts for deterministic checks, then combine results with onchainOS data and judgment.
 
