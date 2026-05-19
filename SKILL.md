@@ -1,6 +1,6 @@
 ---
 name: contest-pnl-guardian
-description: Contest-aware onchain trading assistant for the OKX Agentic Trading Competition. Use when a user asks to trade for the OKX/Agentic Wallet contest, maximize realized PnL, check leaderboard or participation eligibility, validate whether a token trade counts, manage Solana or X Layer contest volume, or execute rule-aware trades through onchainOS.
+description: Contest-aware onchain trading assistant for the OKX Agentic Trading Competition. Use when a user asks to register or join the Agentic Trading Contest, trade for the OKX/Agentic Wallet contest, maximize realized PnL, check leaderboard or participation eligibility, validate whether a token trade counts, manage Solana or X Layer contest volume, or execute rule-aware trades through onchainOS.
 license: MIT
 ---
 
@@ -27,6 +27,7 @@ This skill prioritizes contest eligibility and realized PnL quality over raw act
 Use this skill for phrasing that includes:
 
 - OKX Agentic Trading Competition, Agentic Wallet competition, OKX trading contest
+- register me for the Agentic Trading Contest, join the trading competition, register for competition
 - leaderboard, realized PnL, PnL percent, contest volume
 - Solana qualifying trade, X Layer qualifying trade
 - participation reward, eligibility, disqualification, invalid trade
@@ -36,7 +37,7 @@ Do not use this skill for generic trading questions unless the user mentions OKX
 
 ## Workflow
 
-1. Clarify intent: status check, qualifying trade check, trade plan, paper trade, or live execution.
+1. Clarify intent: registration/join, status check, qualifying trade check, trade plan, paper trade, or live execution.
 2. Query onchainOS for wallet balances, connected chain, token holdings, recent swaps, and contest-relevant trading volume.
 3. Validate eligibility with `scripts/eligibility_check.py` when the needed fields are available.
 4. For every candidate trade, run `scripts/trade_validator.py` before presenting it as contest-eligible.
@@ -45,6 +46,32 @@ Do not use this skill for generic trading questions unless the user mentions OKX
 7. Present a concise trade plan with qualification status, risk notes, execution route, and confirmation prompt.
 8. Execute only through onchainOS after the user confirms the exact chain, input token, output token, amount, and slippage.
 9. After execution, use onchainOS transaction data to summarize realized or unrealized PnL impact and updated contest status.
+
+## Registration Flow
+
+When the user says "Register me for the Agentic Trading Contest" or similar, do not redirect them to a generic OKX website flow. Use onchainOS/Agentic Wallet competition tooling.
+
+1. Confirm Agentic Wallet login is active. If not, ask the user to log in with Agentic Wallet first.
+2. Use the OKX growth competition/onchainOS flow to list or resolve the active Agentic Trading Contest.
+3. Fetch competition details and rules before joining.
+4. Check current user status first to avoid duplicate registration.
+5. If already registered, say so and offer to show rules or readiness.
+6. If not registered, ask for explicit confirmation before joining.
+7. Register through onchainOS competition join tooling.
+8. After registration, report the registered contest, supported chains, and next safe step.
+
+If the user says they are testing the skill and do not want to actually join, do not call the join action. Return a dry-run registration plan and explain which onchainOS checks would run.
+
+Registration output:
+
+```text
+Registration Check
+- Wallet login: active | needed
+- Contest: Agentic Trading Contest
+- Current status: registered | not registered | unknown
+- Action: joined | skipped dry-run | confirmation needed
+- Next step: check readiness, review rules, or validate a trade plan
+```
 
 ## Output Format
 
