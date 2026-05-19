@@ -1,8 +1,12 @@
 {
   "name": "contest-pnl-guardian",
   "version": "1.0.0",
-  "description": "Contest-aware onchain trading guardrails for the OKX Agentic Trading Competition.",
-  "author": "Datwebguy",
+  "description": "Contest-aware onchain trading guardrails for OKX Agentic Trading.",
+  "author": {
+    "name": "Datwebguy"
+  },
+  "homepage": "https://github.com/Datwebguy/contest-pnl-guardian",
+  "repository": "https://github.com/Datwebguy/contest-pnl-guardian",
   "license": "MIT",
   "keywords": [
     "okx",
